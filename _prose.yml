@@ -1,0 +1,64 @@
+prose:
+  rooturl: "_posts"
+  siteurl: "https://rust-develop.github.io"
+  relativeLinks: "https://rust-develop.github.io/links.jsonp"
+  media: "assets/images"
+  ignore:
+    - _config.yml
+    - Gemfile
+    - index.md
+    - about.md
+    - contacts.md
+    - README.md
+    - assets
+    - _includes
+    - _layouts
+  metadata:
+    _posts:
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "post"
+      - name: "title"
+        field:
+          element: "text"
+          label: "Post Title"
+          placeholder: "Enter post title"
+          value: ""
+      - name: "date"
+        field:
+          element: "text"
+          label: "Date"
+          value: ""
+          placeholder: "YYYY-MM-DD HH:MM:SS +0300"
+      - name: "categories"
+        field:
+          element: "multiselect"
+          label: "Categories"
+          placeholder: "Select categories"
+          options:
+            - name: "rust"
+              value: "rust"
+            - name: "introduction"
+              value: "introduction"
+            - name: "ownership"
+              value: "ownership"
+            - name: "async"
+              value: "async"
+            - name: "tutorial"
+              value: "tutorial"
+            - name: "tips"
+              value: "tips"
+      - name: "tags"
+        field:
+          element: "multiselect"
+          label: "Tags"
+          placeholder: "Add tags"
+          alterable: true
+          options:
+            - name: "rust"
+              value: "rust"
+            - name: "beginner"
+              value: "beginner"
+            - name: "code"
+              value: "code"
