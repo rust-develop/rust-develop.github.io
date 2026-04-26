@@ -5,6 +5,8 @@ date: 2026-04-26 12:00:00 +0300
 categories: [rust, introduction]
 tags: [rust, programming, introduction, beginner]
 ---
+Привет!
+
 
 Rust is a systems programming language created at Mozilla Research and released in 2015. It is designed around three core principles: **safety**, **speed**, and **concurrency**.
 
