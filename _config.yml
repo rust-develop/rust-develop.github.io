@@ -3,16 +3,19 @@ description: Blog about Rust programming language
 url: "https://rust-develop.github.io"
 baseurl: ""
 
-author:
-  name: rust-develop
+author: rust-develop
+email: ""
+github_username: rust-develop
 
 theme: minima
 
 minima:
   skin: dark
+  date_format: "%B %d, %Y"
 
 header_pages:
   - about.md
+  - contacts.md
 
 plugins:
   - jekyll-feed
@@ -20,3 +23,9 @@ plugins:
   - jekyll-seo-tag
 
 permalink: /:year/:month/:day/:title/
+
+highlighter: rouge
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
