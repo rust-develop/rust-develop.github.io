@@ -1,0 +1,85 @@
+name: 📝 Новый пост
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: 'Заголовок поста'
+        required: true
+        type: string
+      slug:
+        description: 'URL-имя файла (латиницей, через дефис, например: ownership-v-rust)'
+        required: true
+        type: string
+      categories:
+        description: 'Категории (через пробел, например: rust ownership)'
+        required: false
+        default: 'rust'
+        type: string
+      tags:
+        description: 'Теги (через пробел, например: rust beginner code)'
+        required: false
+        default: 'rust'
+        type: string
+      body:
+        description: 'Текст поста (Markdown)'
+        required: true
+        type: string
+
+jobs:
+  create-post:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create post file
+        env:
+          POST_TITLE: ${{ github.event.inputs.title }}
+          POST_SLUG: ${{ github.event.inputs.slug }}
+          POST_CATEGORIES: ${{ github.event.inputs.categories }}
+          POST_TAGS: ${{ github.event.inputs.tags }}
+          POST_BODY: ${{ github.event.inputs.body }}
+        run: |
+          DATE=$(date +"%Y-%m-%d")
+          DATETIME=$(date +"%Y-%m-%d %H:%M:%S +0300")
+          FILENAME="_posts/${DATE}-${POST_SLUG}.md"
+
+          python3 << 'PYEOF'
+          import os
+          from datetime import datetime
+
+          slug = os.environ['POST_SLUG']
+          title = os.environ['POST_TITLE']
+          categories = os.environ['POST_CATEGORIES']
+          tags = os.environ['POST_TAGS']
+          body = os.environ['POST_BODY']
+          date = datetime.now().strftime('%Y-%m-%d')
+          datetime_str = datetime.now().strftime('%Y-%m-%d %H:%M:%S +0300')
+
+          filename = f'_posts/{date}-{slug}.md'
+          content = f'---\nlayout: post\ntitle: "{title}"\ndate: {datetime_str}\ncategories: {categories}\ntags: {tags}\n---\n\n{body}\n'
+
+          with open(filename, 'w', encoding='utf-8') as f:
+              f.write(content)
+
+          print(f'Created: {filename}')
+          PYEOF
+
+      - name: Commit and push post
+        env:
+          POST_TITLE: ${{ github.event.inputs.title }}
+          POST_SLUG: ${{ github.event.inputs.slug }}
+        run: |
+          DATE=$(date +"%Y-%m-%d")
+          FILENAME="_posts/${DATE}-${POST_SLUG}.md"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add "$FILENAME"
+          git commit -m "Новый пост: ${POST_TITLE}"
+          git push
