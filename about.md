@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-# О блоге
+# About
 
 Привет! Меня зовут **rust-develop**, и это мой блог о языке программирования **Rust**.
 
