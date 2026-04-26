@@ -1,24 +1,22 @@
-title: "Rust-блог"
-description: "Блог о языке программирования Rust — статьи, примеры, советы"
+title: Rust-blog
+description: Blog about Rust programming language
 url: "https://rust-develop.github.io"
 baseurl: ""
 
 author:
   name: rust-develop
 
-  theme: minima
+theme: minima
 
-  minima:
-    skin: dark
+minima:
+  skin: dark
 
-    header_pages:
-      - about.md
+header_pages:
+  - about.md
 
-      plugins:
-        - jekyll-feed
-          - jekyll-sitemap
-            - jekyll-seo-tag
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
 
-            permalink: /:year/:month/:day/:title/
-
-            lang: ru
+permalink: /:year/:month/:day/:title/
