@@ -1,91 +1,105 @@
 ---
 layout: post
-title: "Что такое Rust и зачем он нужен?"
+title: "What is Rust and Why Should You Learn It?"
 date: 2026-04-26 12:00:00 +0300
-categories: [rust, введение]
-tags: [rust, программирование, введение]
+categories: [rust, introduction]
+tags: [rust, programming, introduction, beginner]
 ---
 
-Rust — это системный язык программирования, созданный в Mozilla Research и выпущенный в 2015 году. Он разработан с акцентом на три главных принципа: **безопасность**, **скорость** и **параллелизм**.
+Rust is a systems programming language created at Mozilla Research and released in 2015. It is designed around three core principles: **safety**, **speed**, and **concurrency**.
 
-## Почему Rust?
+## Why Rust?
 
-Большинство системных языков (C, C++) дают разработчику полный контроль над памятью, но вместе с ним — и полную ответственность за ошибки: утечки памяти, обращение к освобождённой памяти, гонки данных. Rust решает эти проблемы на уровне компилятора, без сборщика мусора.
+Most systems languages like C and C++ give developers full control over memory, but with that comes full responsibility for bugs — memory leaks, use-after-free errors, data races. Rust solves these problems at the compiler level, without a garbage collector.
 
-## Ключевые особенности
+> "Rust is the most loved programming language" — Stack Overflow Developer Survey, 6 years in a row.
 
-**1. Система владения (Ownership)**
+## Key Features
 
-Каждое значение в Rust имеет единственного владельца. Когда владелец выходит из области видимости — память освобождается автоматически.
+### 1. Ownership System
+
+Every value in Rust has a single owner. When the owner goes out of scope, the memory is automatically freed:
 
 ```rust
 fn main() {
-    let s = String::from("Привет, Rust!");
-        println!("{}", s);
-        } // s выходит из области видимости — память освобождается
-        ```
+    let s = String::from("Hello, Rust!");
+    println!("{}", s);
+} // s goes out of scope — memory is freed automatically
+```
 
-        **2. Заимствование (Borrowing)**
+### 2. Borrowing
 
-        Вместо копирования данных можно взять ссылку:
+Instead of copying data, you can borrow a reference:
 
-        ```rust
-        fn print_string(s: &String) {
-            println!("{}", s);
-            }
+```rust
+fn print_string(s: &String) {
+    println!("{}", s);
+}
 
-            fn main() {
-                let s = String::from("Rust");
-                    print_string(&s); // передаём ссылку, не передавая владение
-                        println!("{}", s); // s всё ещё доступна
-                        }
-                        ```
+fn main() {
+    let s = String::from("Rust");
+    print_string(&s); // pass a reference, not ownership
+    println!("{}", s); // s is still available here
+}
+```
 
-                        **3. Скорость как у C/C++**
+### 3. Speed like C/C++
 
-                        Rust не использует сборщик мусора — код компилируется в машинный код и работает с той же скоростью, что и C.
+Rust compiles to machine code with no garbage collector — performance matches C and C++.
 
-                        ## Где применяют Rust?
+### 4. Zero-cost Abstractions
 
-                        - **Системное ПО**: операционные системы, драйверы
-                        - **WebAssembly**: быстрый код в браузере
-                        - **Встраиваемые системы**: микроконтроллеры, IoT
-                        - **Сетевые сервисы**: высоконагруженные серверы
-                        - **Инструменты разработки**: компиляторы, утилиты командной строки
+High-level code compiles to the same machine code as hand-written low-level code.
 
-                        ## Кто использует Rust?
+## Where Is Rust Used?
 
-                        - **Linux kernel** — Rust официально принят как второй язык ядра Linux
-                        - **Mozilla** — Firefox (части движка Gecko)
-                        - **Microsoft** — компоненты Windows
-                        - **Google** — Android, Chrome OS
-                        - **Amazon** — AWS Firecracker (гипервизор для Lambda)
+- **System software** — operating systems, drivers, embedded firmware
+- **WebAssembly** — fast code running in the browser
+- **Networking** — high-performance servers and proxies
+- **CLI tools** — fast command-line utilities
+- **Game engines** — safe and performant game logic
 
-                        ## Начало работы
+## Who Uses Rust?
 
-                        Установить Rust проще простого:
+- **Linux kernel** — officially accepted as the second language for kernel development
+- **Mozilla** — parts of the Firefox Gecko engine
+- **Microsoft** — Windows components rewritten in Rust
+- **Google** — Android, ChromeOS
+- **Amazon** — AWS Firecracker hypervisor for Lambda
 
-                        ```bash
-                        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-                        ```
+## Getting Started
 
-                        После установки проверьте:
+Install Rust with one command:
 
-                        ```bash
-                        rustc --version
-                        cargo --version
-                        ```
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
 
-                        `cargo` — это менеджер пакетов и система сборки Rust. Создать новый проект:
+Verify the installation:
 
-                        ```bash
-                        cargo new my_project
-                        cd my_project
-                        cargo run
-                        ```
+```bash
+rustc --version
+cargo --version
+```
 
-                        ## Итог
+Create your first project:
 
-                        Rust — это язык, который позволяет писать надёжный и быстрый код без страха перед ошибками памяти. Если вы хотите разобраться в системном программировании или просто попробовать что-то новое — Rust отличный выбор.
+```bash
+cargo new hello_rust
+cd hello_rust
+cargo run
+```
 
-                        В следующих статьях разберём систему владения подробнее. Оставайтесь на связи!
+This generates a `main.rs` file:
+
+```rust
+fn main() {
+    println!("Hello, world!");
+}
+```
+
+## Summary
+
+Rust lets you write reliable, fast code without fear of memory bugs. If you want to explore systems programming or just try something new and powerful — Rust is an excellent choice.
+
+In upcoming posts, we will dive deeper into the ownership system. Stay tuned!
