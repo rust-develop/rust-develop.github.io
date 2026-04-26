@@ -1,4 +1,4 @@
 ---
 layout: home
-title: Rust-blog
+title: Rust-developer
 ---
