@@ -4,9 +4,11 @@ title: Contacts
 permalink: /contacts/
 ---
 
-# Contacts
+
 
 ## Author
+
+tg: reg12
 
 **rust-develop** — Rust programming language enthusiast and blogger.
 
