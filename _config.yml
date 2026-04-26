@@ -3,8 +3,7 @@ description: Blog about Rust programming language
 url: "https://rust-develop.github.io"
 baseurl: ""
 
-author:
-  name: rust-develop
+author: rust-develop
 
 theme: minima
 
